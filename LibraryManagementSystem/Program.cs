@@ -1,5 +1,6 @@
 using CatMS;
 using LibraryManagementSystem.Data;
+using LibraryManagementSystem.Helper;
 using LibraryManagementSystem.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,9 @@ builder.Services.AddIdentity<User, Role>(options =>
 .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+
+builder.Services.AddTransient<ISignInHelper, SignInHelper>();
 
 var app = builder.Build();
 
