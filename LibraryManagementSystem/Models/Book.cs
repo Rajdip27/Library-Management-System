@@ -7,4 +7,7 @@ public class Book: BaseEntities.BaseEntity<int>
     public string Category { get; set; } = string.Empty;
     public int TotalCopies { get; set; }
     public int AvailableCopies { get; set; }
+
+    public int CategoryId { get; set; }
+    public BookCategory?  bookCategory { get; set; }
 }
