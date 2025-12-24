@@ -37,9 +37,6 @@ namespace LibraryManagementSystem.Migrations
                     b.Property<int>("AvailableCopies")
                         .HasColumnType("int");
 
-                    b.Property<int?>("BookCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -53,8 +50,6 @@ namespace LibraryManagementSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookCategoryId");
-
                     b.ToTable("Books");
                 });
 
@@ -65,9 +60,6 @@ namespace LibraryManagementSystem.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -94,8 +86,6 @@ namespace LibraryManagementSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookId");
 
                     b.ToTable("bookApplications");
                 });
@@ -124,29 +114,6 @@ namespace LibraryManagementSystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BookCategories");
-                });
-
-            modelBuilder.Entity("LibraryManagementSystem.Models.Book", b =>
-                {
-                    b.HasOne("LibraryManagementSystem.Models.BookCategory", null)
-                        .WithMany("Books")
-                        .HasForeignKey("BookCategoryId");
-                });
-
-            modelBuilder.Entity("LibraryManagementSystem.Models.BookApplication", b =>
-                {
-                    b.HasOne("LibraryManagementSystem.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("LibraryManagementSystem.Models.BookCategory", b =>
-                {
-                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

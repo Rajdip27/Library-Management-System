@@ -14,6 +14,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(x =>
 
 // Register the BookRepository for dependency injection
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookApplicationRepository, BookApplicationRepository>();
+builder.Services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
 
 var app = builder.Build();
 
