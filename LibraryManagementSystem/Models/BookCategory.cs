@@ -13,5 +13,5 @@ public class BookCategory: BaseEntities.BaseEntity<int>
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
   
-    public ICollection<Book>? Books { get; set; }
+   //  public ICollection<Book>? Books { get; set; }
 }

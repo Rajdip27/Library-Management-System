@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Book>
+
+@{
+    ViewData["Title"] = "Book List";
+}
+
+<h2 class="mb-3">Book List</h2>
+
+<p>
+    <a asp-action="CreateOrEdit" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Add New Book
+    </a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>SNo</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Total Copies</th>
+            <th>Available Copies</th>
+            <th style="width:180px;">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Author</td>
+                <td>@item.Category</td>
+                <td>@item.TotalCopies</td>
+                <td>@item.AvailableCopies</td>
+                <td>
+                    <a asp-action="CreateOrEdit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

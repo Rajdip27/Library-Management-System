@@ -1,4 +1,5 @@
 using LibraryManagementSystem.Data;
+using LibraryManagementSystem.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(x =>
     x.UseSqlServer(builder.Configuration.GetConnectionString("Coon")));
 
+// Register the BookRepository for dependency injection
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 
 var app = builder.Build();
 
