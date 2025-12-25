@@ -32,12 +32,6 @@ public class ApplicationDbContext: IdentityDbContext<
     {
         base.OnModelCreating(modelBuilder);
 
-        // Identity keys
-        modelBuilder.Entity<UserLogin>().HasKey(e => new { e.LoginProvider, e.ProviderKey, e.UserId });
-        modelBuilder.Entity<UserRole>().HasKey(e => new { e.UserId, e.RoleId });
-        modelBuilder.Entity<UserToken>().HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-        modelBuilder.Entity<UserClaim>().HasKey(e => e.Id);
-        modelBuilder.Entity<RoleClaim>().HasKey(e => e.Id);
 
         // BookCategory -> Book relationship
         modelBuilder.Entity<Book>()
@@ -52,6 +46,10 @@ public class ApplicationDbContext: IdentityDbContext<
             .WithMany()
             .HasForeignKey(ba => ba.BookId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        base.OnModelCreating(modelBuilder);
+        // Automatically apply configurations
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
     }
 

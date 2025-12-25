@@ -60,8 +60,8 @@ namespace LibraryManagementSystem.Controllers
             {
                 return RedirectToAction(
                     actionName: "Index",
-                    controllerName: "Dashboard",
-                    routeValues: new { area = "Admin" }
+                    controllerName: "Dashboard"
+
                 );
             }
 
