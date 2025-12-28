@@ -1,0 +1,64 @@
+﻿@model LibraryManagementSystem.Models.BookApplication
+
+@{
+    ViewData["Title"] = "Book Application Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card mt-3">
+    <@* div class="card-header">
+        <strong>Application for: @Model.Book?.Title</strong> *@
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Student Email</dt>
+            <dd class="col-sm-9">@Model.StudentEmail</dd>
+
+            <dt class="col-sm-3">Student ID</dt>
+            <dd class="col-sm-9">@Model.StudentId</dd>
+
+            <dt class="col-sm-3">Book</dt>
+         @*    <dd class="col-sm-9">@Model.Book?.Title</dd> *@
+
+            <dt class="col-sm-3">Status</dt>
+            <dd class="col-sm-9">
+                @switch (Model.Status)
+                {
+                    case "Pending":
+                        <span class="badge bg-warning text-dark">@Model.Status</span>
+                        ;
+                        break;
+                    case "Approved":
+                        <span class="badge bg-success">@Model.Status</span>
+                        ;
+                        break;
+                    case "Rejected":
+                        <span class="badge bg-danger">@Model.Status</span>
+                        ;
+                        break;
+                }
+            </dd>
+
+            <dt class="col-sm-3">Fine Amount</dt>
+            <dd class="col-sm-9">@Model.FineAmount.ToString("C")</dd>
+
+            <dt class="col-sm-3">Issue Date</dt>
+            <dd class="col-sm-9">@Model.IssueDate.ToString("yyyy-MM-dd")</dd>
+
+            <dt class="col-sm-3">Return Date</dt>
+            <dd class="col-sm-9">@Model.ReturnDate.ToString("yyyy-MM-dd")</dd>
+
+            <dt class="col-sm-3">Created At</dt>
+            <dd class="col-sm-9">@Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="CreateOrEdit" asp-route-id="@Model.Id" class="btn btn-primary">
+            <i class="bi bi-pencil-square"></i> Edit
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Back to List
+        </a>
+    </div>
+</div>

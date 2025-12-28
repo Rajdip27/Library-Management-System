@@ -1,0 +1,32 @@
+﻿@model LibraryManagementSystem.Models.Book
+
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card mt-3">
+    <div class="card-header">
+        <strong>@Model.Title</strong>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Author</dt>
+            <dd class="col-sm-9">@Model.Author</dd>
+
+            <dt class="col-sm-3">Category</dt>
+            <dd class="col-sm-9">@Model.Category</dd>
+
+            <dt class="col-sm-3">Total Copies</dt>
+            <dd class="col-sm-9">@Model.TotalCopies</dd>
+
+            <dt class="col-sm-3">Available Copies</dt>
+            <dd class="col-sm-9">@Model.AvailableCopies</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="CreateOrEdit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

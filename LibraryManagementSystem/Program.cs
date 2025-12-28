@@ -1,7 +1,43 @@
+using CatMS;
+using LibraryManagementSystem.Data;
+using LibraryManagementSystem.Helper;
+using LibraryManagementSystem.Repository;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using static LibraryManagementSystem.Auth_IdentityModel.IdentityModel;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configure Entity Framework and SQL Server
+
+builder.Services.AddDbContext<ApplicationDbContext>(x =>
+    x.UseSqlServer(builder.Configuration.GetConnectionString("Coon")));
+
+// Register the BookRepository for dependency injection
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookApplicationRepository, BookApplicationRepository>();
+builder.Services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
+
+
+// Add Identity with custom classes and long key
+builder.Services.AddIdentity<User, Role>(options =>
+{
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = false;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+
+builder.Services.AddTransient<ISignInHelper, SignInHelper>();
 
 var app = builder.Build();
 
