@@ -24,7 +24,10 @@
 
     <div class="mb-3">
         <label asp-for="Category" class="form-label"></label>
-        <input asp-for="Category" class="form-control" placeholder="Enter category" />
+        <select class="form-control" asp-for="CategoryId" asp-items="@ViewBag.categoryId">
+            <option value="">--Select One--</option>
+          
+       </select>
         <span asp-validation-for="Category" class="text-danger"></span>
     </div>
 
@@ -33,6 +36,7 @@
         <input asp-for="TotalCopies" type="number" class="form-control" min="0" />
         <span asp-validation-for="TotalCopies" class="text-danger"></span>
     </div>
+
 
     <div class="mb-3">
         <label asp-for="AvailableCopies" class="form-label"></label>

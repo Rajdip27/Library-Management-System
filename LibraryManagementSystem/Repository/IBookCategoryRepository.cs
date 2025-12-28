@@ -1,4 +1,5 @@
 ﻿using LibraryManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LibraryManagementSystem.Repository;
 
@@ -9,4 +10,6 @@ public interface IBookCategoryRepository
     Task<BookCategory> AddBookCategoryAsync(BookCategory  bookCategory,CancellationToken cancellationToken);
     Task<BookCategory> UpdateBookCategoryAsync(BookCategory  bookCategory,CancellationToken cancellationToken);
     Task<BookCategory> DeleteBookCategoryAsync(int id, CancellationToken cancellationToken);
+
+    IEnumerable<SelectListItem> Dropdown();
 }
