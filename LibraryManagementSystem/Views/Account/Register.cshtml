@@ -344,18 +344,21 @@
                             </div>
 
                             <!-- Account Type -->
-                         @*    <div class="input-group-custom">
+                            <div class="input-group-custom">
                                 <label asp-for="AccountType" class="form-label">
                                     <i class="bi bi-person-badge"></i>
                                     Account Type
                                 </label>
                                 <select asp-for="AccountType" class="form-control form-control-custom">
                                     <option value="">Select account type</option>
-                                    <option value="Buyer">Buyer</option>
-                                    <option value="Seller">Seller</option>
+                                    <option value="Administrator">Administrator</option>
+                                    <option value="Student">Student</option>
+                                    <option value="Mangement">Mangement</option>
                                 </select>
+
                                 <span asp-validation-for="AccountType" class="text-danger validation-feedback"></span>
-                            </div> *@
+
+                            </div> 
 
                             <!-- Password -->
                             <div class="input-group-custom">

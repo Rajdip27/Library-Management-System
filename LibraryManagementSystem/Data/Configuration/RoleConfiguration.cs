@@ -18,14 +18,14 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
         }, new Role
         {
             Id = 2,
-            Name = "Seller",
-            NormalizedName = "Seller",
+            Name = "Student",
+            NormalizedName = "STUDENT",
             Description = "Default role assigned to all employees."
         }, new Role
         {
             Id = 3,
-            Name = "Buyer",
-            NormalizedName = "Buyer",
+            Name = "Mangement",
+            NormalizedName = "MANGEMENT",
             Description = "Default role assigned to all customers."
         }
 
