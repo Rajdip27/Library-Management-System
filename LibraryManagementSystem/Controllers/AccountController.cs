@@ -27,7 +27,6 @@ namespace LibraryManagementSystem.Controllers
         {
             return View(new RegisterViewModel());
         }
-
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -48,30 +47,38 @@ namespace LibraryManagementSystem.Controllers
             if (user == null)
                 return RedirectToAction("Index", "Home");
 
-            // Add role
-            await _userManager.AddToRoleAsync(user, model.AccountType);
+            // ---------- Safe Role Assignment ----------
+            var roleName = model.AccountType switch
+            {
+                "Administrator" => "Administrator",
+                "Student" => "Student",
+                _ => null
+            };
+
+            if (roleName == null)
+            {
+                ModelState.AddModelError("AccountType", "Selected role is invalid.");
+                return View(model);
+            }
+
+            var roleExists = await _userManager.IsInRoleAsync(user, roleName);
+            if (!roleExists)
+                await _userManager.AddToRoleAsync(user, roleName);
 
             // Sign in user
             await _signInManager.SignInAsync(user, isPersistent: false);
 
             // Role based redirect
-            if (await _userManager.IsInRoleAsync(user, "Administrator") ||
-                await _userManager.IsInRoleAsync(user, "Seller"))
-            {
-                return RedirectToAction(
-                    actionName: "Index",
-                    controllerName: "Dashboard"
+            if (await _userManager.IsInRoleAsync(user, "Administrator"))
+                return RedirectToAction("Index", "Dashboard");
 
-                );
-            }
-
-            if (await _userManager.IsInRoleAsync(user, "Buyer"))
-            {
+            if (await _userManager.IsInRoleAsync(user, "Student"))
                 return RedirectToAction("Index", "Home");
-            }
 
             return RedirectToAction("Index", "Home");
         }
+
+
 
         [HttpPost]
         [AllowAnonymous]
