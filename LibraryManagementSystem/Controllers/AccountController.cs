@@ -33,7 +33,9 @@ namespace LibraryManagementSystem.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
+            {
                 return View(model);
+            }
 
             var result = await _authService.Register(model);
 
@@ -43,39 +45,16 @@ namespace LibraryManagementSystem.Controllers
                 return View(model);
             }
 
-            var user = await _userManager.FindByIdAsync(result.UserId.ToString());
-            if (user == null)
-                return RedirectToAction("Index", "Home");
+            var user = await _signInManager.UserManager
+                .FindByIdAsync(result.UserId.ToString());
 
-            // ---------- Safe Role Assignment ----------
-            var roleName = model.AccountType switch
+            if (user != null)
             {
-                "Administrator" => "Administrator",
-                "Student" => "Student",
-                _ => null
-            };
-
-            if (roleName == null)
-            {
-                ModelState.AddModelError("AccountType", "Selected role is invalid.");
-                return View(model);
+                await _signInManager.SignInAsync(user, false);
             }
+            return RedirectToAction("Index", "Dashboard");
 
-            var roleExists = await _userManager.IsInRoleAsync(user, roleName);
-            if (!roleExists)
-                await _userManager.AddToRoleAsync(user, roleName);
-
-            // Sign in user
-            await _signInManager.SignInAsync(user, isPersistent: false);
-
-            // Role based redirect
-            if (await _userManager.IsInRoleAsync(user, "Administrator"))
-                return RedirectToAction("Index", "Dashboard");
-
-            if (await _userManager.IsInRoleAsync(user, "Student"))
-                return RedirectToAction("Index", "Home");
-
-            return RedirectToAction("Index", "Home");
+            
         }
 
 

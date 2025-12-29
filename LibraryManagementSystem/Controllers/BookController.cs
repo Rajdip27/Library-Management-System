@@ -8,10 +8,15 @@ namespace LibraryManagementSystem.Controllers;
 public class BookController : Controller
 {
     private readonly IBookRepository _bookRepository;
-    public BookController(IBookRepository bookRepository)
+    private readonly IBookCategoryRepository _bookCategoryRepository;
+
+
+    public BookController(IBookRepository bookRepository, IBookCategoryRepository bookCategoryRepository)
     {
         _bookRepository = bookRepository;
+        _bookCategoryRepository = bookCategoryRepository;
     }
+
     public async Task<IActionResult> Index(CancellationToken cancellationToken)
     {
         var data = await _bookRepository.GetAllBookAsync(cancellationToken);
@@ -20,8 +25,10 @@ public class BookController : Controller
     [HttpGet]
    public async Task<IActionResult> CreateOrEdit(int id, CancellationToken cancellationToken)
     {
-        if (id == 0) 
+        ViewData["categoryId"] = _bookCategoryRepository.Dropdown();
+        if (id == 0)
         {
+           
             return View(new Book());
         }
         else

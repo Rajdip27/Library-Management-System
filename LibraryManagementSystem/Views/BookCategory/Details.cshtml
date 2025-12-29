@@ -2,25 +2,144 @@
 
 @{
     ViewData["Title"] = "Category Details";
+    ViewData["ActivePage"] = "BookCategory";
 }
 
-<h2>Category Details</h2>
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <!-- Page Header -->
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <div>
+                <h3 class="mb-1 fw-bold text-primary">Category Details</h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a asp-controller="BookCategory" asp-action="Index" class="text-decoration-none">Book Categories</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@Model.CategoryName</li>
+                    </ol>
+                </nav>
+            </div>
+            <a asp-action="Index" class="btn btn-outline-secondary shadow-sm">
+                <i class="bi bi-arrow-left me-2"></i>Back to List
+            </a>
+        </div>
 
-<div class="card p-3 mb-3">
-    <dl class="row">
-        <dt class="col-sm-3">Category Name</dt>
-        <dd class="col-sm-9">@Model.CategoryName</dd>
+        <!-- Details Card -->
+        <div class="card shadow-sm border-0" style="border-radius: 16px; overflow: hidden;">
+            <div class="card-header bg-primary text-white py-4">
+                <h4 class="mb-0 fw-semibold">
+                    <i class="bi bi-tags me-3"></i>@Model.CategoryName
+                </h4>
+                <small class="opacity-90">
+                    Category ID: #@Model.Id • Created on @Model.CreatedAt.ToString("MMMM dd, yyyy")
+                </small>
+            </div>
 
-        <dt class="col-sm-3">Description</dt>
-        <dd class="col-sm-9">@Model.Description ?? "N/A"</dd>
+            <div class="card-body p-5">
+                <dl class="row g-4">
+                    <!-- Category Name -->
+                    <dt class="col-md-3 fw-semibold text-dark">Category Name</dt>
+                    <dd class="col-md-9 fs-5 text-primary">@Model.CategoryName</dd>
 
-        <dt class="col-sm-3">Is Active</dt>
-        <dd class="col-sm-9">@Model.IsActive ? "Yes" : "No"</dd>
+                    <!-- Description -->
+                    <dt class="col-md-3 fw-semibold text-dark">Description</dt>
+                    <dd class="col-md-9">
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <p class="mb-0 text-muted lh-lg">@Model.Description</p>
+                        }
+                        else
+                        {
+                            <span class="text-muted fst-italic">No description provided</span>
+                        }
+                    </dd>
 
-        <dt class="col-sm-3">Created At</dt>
-        <dd class="col-sm-9">@Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")</dd>
-    </dl>
+                    <!-- Status -->
+                    <dt class="col-md-3 fw-semibold text-dark">Status</dt>
+                    <dd class="col-md-9">
+                        @if (Model.IsActive)
+                        {
+                            <span class="badge bg-success text-white px-4 py-2 fs-6">
+                                <i class="bi bi-check-circle me-2"></i>Active
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary text-white px-4 py-2 fs-6">
+                                <i class="bi bi-pause-circle me-2"></i>Inactive
+                            </span>
+                        }
+                    </dd>
 
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    <!-- Created At -->
+                    <dt class="col-md-3 fw-semibold text-dark">Created On</dt>
+                    <dd class="col-md-9 text-muted">
+                        <i class="bi bi-calendar-event me-2"></i>
+                        @Model.CreatedAt.ToString("dddd, MMMM dd, yyyy 'at' HH:mm")
+                    </dd>
+                </dl>
+
+                <!-- Action Buttons -->
+                <hr class="my-5 border-secondary-subtle">
+
+                <div class="d-flex flex-wrap gap-3 justify-content-end">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning px-4 shadow-sm">
+                        <i class="bi bi-pencil-square me-2"></i>Edit Category
+                    </a>
+                    <a asp-action="Index" class="btn btn-outline-secondary px-4 shadow-sm">
+                        <i class="bi bi-list-ul me-2"></i>Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional: Quick Stats (if you want to show book count later) -->
+        @* Uncomment and populate when you have book count per category
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="dashboard-card text-center py-4">
+                    <i class="bi bi-book fs-1 text-primary mb-3"></i>
+                    <h4 class="fw-bold">248</h4>
+                    <p class="text-muted mb-0">Books in this category</p>
+                </div>
+            </div>
+        </div>
+        *@
+    </div>
 </div>
+
+<style>
+    /* Enhanced details page styling */
+    .card-header {
+        background: linear-gradient(135deg, #2c3e50, #3498db) !important;
+    }
+
+    dl dt {
+        color: #2d3436;
+    }
+
+    dl dd {
+        color: #34495e;
+    }
+
+    .badge {
+        border-radius: 50px;
+        font-weight: 500;
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+        }
+
+    .breadcrumb-item a {
+        color: #3498db;
+    }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+</style>

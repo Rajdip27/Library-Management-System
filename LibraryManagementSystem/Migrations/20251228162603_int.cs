@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LibraryManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class ints : Migration
+    public partial class @int : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -255,8 +255,9 @@ namespace LibraryManagementSystem.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "CreatedBy", "CreatedDate", "Email", "EmailConfirmed", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "RegisterDate", "SecurityStamp", "TwoFactorEnabled", "UpdatedBy", "UpdatedDate", "UserName" },
                 values: new object[,]
                 {
-                    { 1L, 0, "", "a81d7dbc-9d21-4291-8ed1-0af904c0b5ce", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, "", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEHuAu8xZgTehGQIBO0c5ABONk7dlUW+Ih7TKfPY1Wr4IuVHHhHxwh7IQK/kSNfFHeA==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "e21ba5c3-ef3e-4412-ba7d-5064dd4c8a5a", false, null, null, "admin@localhost.com" },
-                    { 2L, 0, "", "5d00c8c6-ec19-413e-b583-e7ddcbe49fdd", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, "", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEO3Rfw6DISAYChzwMEkJ3aZSHO1cJugaaODQDxp5nd8KeyJsGrW2A3gQZc9fM6VRXA==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ae6a86ce-8857-487d-a362-620126723228", false, null, null, "employee@localhost.com" }
+                    { 1L, 0, "", "5300144f-5dfe-42ff-b4d7-5b42e3adba44", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, "", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEMAZ+fSnfIyl59Zy8b32hhQyDAvsfYuczmk6XOPWCjEURMc3fRqo8jU5Zy8qXLkkOQ==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "46ba07c5-aeb2-428d-b50d-4ee64b72469d", false, null, null, "admin@localhost.com" },
+                    { 2L, 0, "", "65da40fc-129c-4898-b378-4b6bcffd50a2", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, "", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEPA8o0OkNtwH1mM28eTkxv4UNo92Al8VTSDmiSCDJskZmg5bcfhubbpEt6CkIfogIw==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "09c6a8ef-0cc5-48c1-ad93-90f8903d8ed4", false, null, null, "employee@localhost.com" },
+                    { 3L, 0, "", "85e55aef-3e2e-4cba-989c-3577597e7496", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "Manager@localhost.com", true, "", false, null, "Manager@LOCALHOST.COM", "Manager@LOCALHOST.COM", "AQAAAAIAAYagAAAAEDcUAcr1t+h/+obLJZPaOxmiBH/oy4fabRCslO3uAstdWlXg2dAemccaoHcF2QBr4g==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3b42a176-2b05-49d0-90f6-26ca864c4af2", false, null, null, "Manager@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -265,7 +266,8 @@ namespace LibraryManagementSystem.Migrations
                 values: new object[,]
                 {
                     { 1L, 1L },
-                    { 2L, 2L }
+                    { 2L, 2L },
+                    { 3L, 3L }
                 });
 
             migrationBuilder.CreateIndex(
