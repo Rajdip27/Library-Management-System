@@ -1,4 +1,5 @@
 ﻿using LibraryManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LibraryManagementSystem.Repository;
 
@@ -9,4 +10,7 @@ public interface IBookApplicationRepository
     Task<BookApplication> AddBookApplicationAsync(BookApplication  bookApplication, CancellationToken cancellationToken);
     Task<BookApplication> UpdateBookApplicationAsync(BookApplication  bookApplication, CancellationToken cancellationToken);
     Task<BookApplication> DeleteBookApplicationAsync(int id, CancellationToken cancellationToken);
+
+
+
 }

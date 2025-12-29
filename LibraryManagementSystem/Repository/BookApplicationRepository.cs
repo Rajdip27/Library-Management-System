@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystem.Data;
 using LibraryManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagementSystem.Repository;
@@ -30,6 +31,7 @@ public class BookApplicationRepository : IBookApplicationRepository
          return null!;
     }
 
+  
     public async Task<IEnumerable<BookApplication>> GetAllBookApplicationAsync(CancellationToken cancellationToken)
     {
        var data = await _context.bookApplications.ToListAsync(cancellationToken);
@@ -50,6 +52,7 @@ public class BookApplicationRepository : IBookApplicationRepository
         return null!;
     }
 
+
     public async Task<BookApplication> UpdateBookApplicationAsync(BookApplication bookApplication, CancellationToken cancellationToken)
     {
        var data = await _context.bookApplications.FindAsync(bookApplication.Id);
@@ -67,4 +70,5 @@ public class BookApplicationRepository : IBookApplicationRepository
         }
             return null!;
     }
+
 }

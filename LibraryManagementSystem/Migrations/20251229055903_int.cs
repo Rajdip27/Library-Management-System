@@ -221,13 +221,14 @@ namespace LibraryManagementSystem.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StudentId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StudentId = table.Column<long>(type: "bigint", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FineAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BookId = table.Column<int>(type: "int", nullable: false)
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    BookId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -238,6 +239,11 @@ namespace LibraryManagementSystem.Migrations
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_bookApplications_Books_BookId1",
+                        column: x => x.BookId1,
+                        principalTable: "Books",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -255,9 +261,9 @@ namespace LibraryManagementSystem.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "CreatedBy", "CreatedDate", "Email", "EmailConfirmed", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "RegisterDate", "SecurityStamp", "TwoFactorEnabled", "UpdatedBy", "UpdatedDate", "UserName" },
                 values: new object[,]
                 {
-                    { 1L, 0, "", "5300144f-5dfe-42ff-b4d7-5b42e3adba44", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, "", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEMAZ+fSnfIyl59Zy8b32hhQyDAvsfYuczmk6XOPWCjEURMc3fRqo8jU5Zy8qXLkkOQ==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "46ba07c5-aeb2-428d-b50d-4ee64b72469d", false, null, null, "admin@localhost.com" },
-                    { 2L, 0, "", "65da40fc-129c-4898-b378-4b6bcffd50a2", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, "", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEPA8o0OkNtwH1mM28eTkxv4UNo92Al8VTSDmiSCDJskZmg5bcfhubbpEt6CkIfogIw==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "09c6a8ef-0cc5-48c1-ad93-90f8903d8ed4", false, null, null, "employee@localhost.com" },
-                    { 3L, 0, "", "85e55aef-3e2e-4cba-989c-3577597e7496", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "Manager@localhost.com", true, "", false, null, "Manager@LOCALHOST.COM", "Manager@LOCALHOST.COM", "AQAAAAIAAYagAAAAEDcUAcr1t+h/+obLJZPaOxmiBH/oy4fabRCslO3uAstdWlXg2dAemccaoHcF2QBr4g==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3b42a176-2b05-49d0-90f6-26ca864c4af2", false, null, null, "Manager@localhost.com" }
+                    { 1L, 0, "", "4dbf304a-4c4e-483a-a409-00c4260ad978", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, "", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEGSIZG3zyskmjGsOuqVhy4CssCWlq2LfUkcmjBtDTBjOC/WhCXI4mi1wZR97Wg8RSw==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "f06a14fa-91af-4ebe-a55e-9f1b0fc9ec46", false, null, null, "admin@localhost.com" },
+                    { 2L, 0, "", "978329b0-125e-44ba-8312-7e1a97269f27", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, "", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEGF251Ibv1cFHB5nh/cr+VNEFaTlWRJc1B7C8IKZDWYi4scxMoyZPQzUKXvJjQehpA==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "17435a37-8a4c-4914-85e9-e8568476f2f6", false, null, null, "employee@localhost.com" },
+                    { 3L, 0, "", "770bb896-7e3d-4160-bf8f-fa099edc9b81", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "Manager@localhost.com", true, "", false, null, "Manager@LOCALHOST.COM", "Manager@LOCALHOST.COM", "AQAAAAIAAYagAAAAEB8zoaKmXLoQNUDbvH/lPISyUYy+asBz99l7CcW261f9T70H5GZ8paSmiO/16J5a7w==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "f25181a4-d429-4993-aa93-af76dc631b92", false, null, null, "Manager@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -313,6 +319,11 @@ namespace LibraryManagementSystem.Migrations
                 name: "IX_bookApplications_BookId",
                 table: "bookApplications",
                 column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_bookApplications_BookId1",
+                table: "bookApplications",
+                column: "BookId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_CategoryId",
