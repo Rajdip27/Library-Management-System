@@ -15,20 +15,7 @@
 }
 
 <!-- Page Header -->
-<div class="d-flex justify-content-between align-items-center mb-5">
-    <div>
-        <h3 class="mb-1 fw-bold text-primary">@ViewData["Title"]</h3>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a asp-controller="BookApplication" asp-action="Index">Book Applications</a></li>
-                <li class="breadcrumb-item active" aria-current="page">@(isEdit ? "Edit" : "Create")</li>
-            </ol>
-        </nav>
-    </div>
-    <a asp-action="Index" class="btn btn-outline-secondary shadow-sm">
-        <i class="bi bi-arrow-left me-2"></i>Back to List
-    </a>
-</div>
+
 
 <!-- Form Card -->
 <div class="row justify-content-center">
@@ -95,7 +82,7 @@
                             <span asp-validation-for="FineAmount" class="text-danger small"></span>
                         </div>
                     }
-                    
+
 
                     <!-- Issue Date -->
                     <div class="col-md-6">
@@ -124,11 +111,11 @@
                     <a asp-action="Index" class="btn btn-outline-secondary btn-lg shadow-sm">
                         <i class="bi bi-x-circle me-2"></i>Cancel
                     </a>
-                   
-                        <button type="submit" class="btn btn-primary btn-lg px-5 shadow-sm me-3">
-                            <i class="bi bi-save me-2"></i>@(isEdit ? "Update Book" : "Save Book")
-                        </button>
-                    
+
+                    <button type="submit" class="btn btn-primary btn-lg px-5 shadow-sm me-3">
+                        <i class="bi bi-save me-2"></i> Save Book
+                    </button>
+
                 </div>
             </form>
         </div>

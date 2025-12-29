@@ -2,6 +2,7 @@ using CatMS;
 using LibraryManagementSystem.Data;
 using LibraryManagementSystem.Helper;
 using LibraryManagementSystem.Repository;
+using LibraryManagementSystem.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using static LibraryManagementSystem.Auth_IdentityModel.IdentityModel;
@@ -20,6 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(x =>
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookApplicationRepository, BookApplicationRepository>();
 builder.Services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
+builder.Services.AddScoped<IRolePermissionService, RolePermissionService>();
 
 
 // Add Identity with custom classes and long key

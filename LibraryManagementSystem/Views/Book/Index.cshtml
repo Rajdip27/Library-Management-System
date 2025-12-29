@@ -1,8 +1,14 @@
-﻿@model IEnumerable<LibraryManagementSystem.Models.Book>
+﻿@using LibraryManagementSystem.Helper
+@using LibraryManagementSystem.Service
+@model IEnumerable<LibraryManagementSystem.Models.Book>
+@inject ISignInHelper SignInHelper
+@inject IRolePermissionService RolePermissionService
+
 
 @{
     ViewData["Title"] = "Books Management";
     ViewData["ActivePage"] = "Books";
+    var role = SignInHelper.Roles;
 }
 
 <!-- Page Header -->
@@ -16,9 +22,13 @@
             </ol>
         </nav>
     </div>
-    <a asp-action="CreateOrEdit" class="btn btn-primary shadow-sm btn-lg">
-        <i class="bi bi-plus-circle me-2"></i>Add New Book
-    </a>
+    @if (User.IsInRole("Manger"))
+    {
+        <a asp-action="CreateOrEdit" class="btn btn-primary shadow-sm btn-lg">
+            <i class="bi bi-plus-circle me-2"></i>Add New Book
+        </a>
+    }
+
 </div>
 
 <!-- Filters & Search -->
@@ -88,18 +98,38 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm shadow-sm" title="View">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <a asp-action="CreateOrEdit" asp-route-id="@item.Id" class="btn btn-warning btn-sm shadow-sm" title="Edit">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline"
-                                          onsubmit="return confirm('Are you sure you want to delete this book?');">
-                                        <button type="submit" class="btn btn-danger btn-sm shadow-sm" title="Delete">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
+
+                                    @if (RolePermissionService.CanView(role))
+                                    {
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm shadow-sm" title="View">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                    }
+                                   
+                                    @if (RolePermissionService.CanEdit(role))
+                                    {
+                                        <a asp-action="CreateOrEdit" asp-route-id="@item.Id" class="btn btn-warning btn-sm shadow-sm" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+
+                                    }
+                                  
+                                    @if (RolePermissionService.CanDelete(role))
+                                    {
+                                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline"
+                                              onsubmit="return confirm('Are you sure you want to delete this book?');">
+                                            <button type="submit" class="btn btn-danger btn-sm shadow-sm" title="Delete">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                    @if (User.IsInRole("Student"))
+                                    {
+                                        <a asp-action="Applybook" asp-controller="BookApplication" asp-route-id="@item.Id" class="btn btn-warning btn-sm shadow-sm" title="Apply">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                    }
+                                   
                                 </div>
                             </td>
                         </tr>
