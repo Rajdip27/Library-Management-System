@@ -51,7 +51,7 @@ public class BookApplicationController : Controller
         ViewData["BookId"] = _bookRepository.Dropdown();
         if (bookApplication.Id == 0)
         {
-            
+            ViewData["BookId"] = _bookRepository.Dropdown();
             bookApplication.StudentId = _signInHelper.UserId ?? 1;
             bookApplication.Status = "Pending";
             await _bookApplicationRepository.AddBookApplicationAsync(bookApplication, cancellationToken);

@@ -60,6 +60,7 @@ public class BookApplicationRepository : IBookApplicationRepository
          { 
               data.StudentEmail = bookApplication.StudentEmail;
               data.StudentId = bookApplication.StudentId;
+              data.StudentIdCardNo = bookApplication.StudentIdCardNo;
               data.Status = bookApplication.Status;
               data.FineAmount = bookApplication.FineAmount;
               data.IssueDate = bookApplication.IssueDate;
