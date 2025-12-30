@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystem.Data;
 using LibraryManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryManagementSystem.Repository;
@@ -28,6 +29,16 @@ public class BookRepository : IBookRepository
                 return data;
         }
          return null!;
+    }
+
+    public IEnumerable<SelectListItem> Dropdown()
+    {
+        var data = _context.Books.Select(x => new SelectListItem
+        {
+            Text = x.Title,
+            Value = x.Id.ToString()
+        }).ToList();
+        return data;
     }
 
     public async Task<IEnumerable<Book>> GetAllBookAsync(CancellationToken cancellationToken)

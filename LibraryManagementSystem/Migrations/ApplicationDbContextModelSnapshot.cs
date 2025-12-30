@@ -227,7 +227,7 @@ namespace LibraryManagementSystem.Migrations
                             Id = 1L,
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "5300144f-5dfe-42ff-b4d7-5b42e3adba44",
+                            ConcurrencyStamp = "2e989fa1-5a85-4dfd-9aa8-323d5374c022",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "admin@localhost.com",
@@ -236,11 +236,11 @@ namespace LibraryManagementSystem.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMAZ+fSnfIyl59Zy8b32hhQyDAvsfYuczmk6XOPWCjEURMc3fRqo8jU5Zy8qXLkkOQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEA6eW1ThHV4gpbMRxQfa/zpDOyynOSAOqbgkadOT4iWocG/02ioRcCx+svPD13+nYw==",
                             Phone = "",
                             PhoneNumberConfirmed = false,
                             RegisterDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "46ba07c5-aeb2-428d-b50d-4ee64b72469d",
+                            SecurityStamp = "1bfe0ec7-1358-49cc-b57c-e4c9dedc8948",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -249,7 +249,7 @@ namespace LibraryManagementSystem.Migrations
                             Id = 2L,
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "65da40fc-129c-4898-b378-4b6bcffd50a2",
+                            ConcurrencyStamp = "5b42c729-b035-4964-8e6b-2e8ebdd581eb",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "employee@localhost.com",
@@ -258,11 +258,11 @@ namespace LibraryManagementSystem.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPA8o0OkNtwH1mM28eTkxv4UNo92Al8VTSDmiSCDJskZmg5bcfhubbpEt6CkIfogIw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKAqW1tNsJE0g6+OdUxGVLT0b9XUim/hMrqlkPLwFYXJbzy6aMwsLgQ9KSH4Tk3TIA==",
                             Phone = "",
                             PhoneNumberConfirmed = false,
                             RegisterDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "09c6a8ef-0cc5-48c1-ad93-90f8903d8ed4",
+                            SecurityStamp = "be311e86-11a0-4d3d-b34d-298eb774e1f6",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         },
@@ -271,7 +271,7 @@ namespace LibraryManagementSystem.Migrations
                             Id = 3L,
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "85e55aef-3e2e-4cba-989c-3577597e7496",
+                            ConcurrencyStamp = "a2f754f2-53fe-4b06-85bd-d0cf052b1c25",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "Manager@localhost.com",
@@ -280,11 +280,11 @@ namespace LibraryManagementSystem.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Manager@LOCALHOST.COM",
                             NormalizedUserName = "Manager@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDcUAcr1t+h/+obLJZPaOxmiBH/oy4fabRCslO3uAstdWlXg2dAemccaoHcF2QBr4g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELl9wM6xWPNlRHI5GOs/qQK7xLl4BSZxZuxRrLyVz6TG+YeqQZ811uiId3w6GQn3Zw==",
                             Phone = "",
                             PhoneNumberConfirmed = false,
                             RegisterDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "3b42a176-2b05-49d0-90f6-26ca864c4af2",
+                            SecurityStamp = "492d36ff-5a04-4b74-9ae6-033c9bc4c5de",
                             TwoFactorEnabled = false,
                             UserName = "Manager@localhost.com"
                         });
@@ -433,6 +433,9 @@ namespace LibraryManagementSystem.Migrations
                     b.Property<int>("BookId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("BookId1")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -453,13 +456,18 @@ namespace LibraryManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StudentId")
+                    b.Property<long>("StudentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StudentIdCardNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BookId");
+
+                    b.HasIndex("BookId1");
 
                     b.ToTable("bookApplications");
                 });
@@ -560,7 +568,16 @@ namespace LibraryManagementSystem.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("LibraryManagementSystem.Models.Book", null)
+                        .WithMany("BookApplications")
+                        .HasForeignKey("BookId1");
+
                     b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("LibraryManagementSystem.Models.Book", b =>
+                {
+                    b.Navigation("BookApplications");
                 });
 
             modelBuilder.Entity("LibraryManagementSystem.Models.BookCategory", b =>

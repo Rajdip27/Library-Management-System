@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LibraryManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class @int : Migration
+    public partial class ints : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -221,13 +221,15 @@ namespace LibraryManagementSystem.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StudentId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StudentIdCardNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StudentId = table.Column<long>(type: "bigint", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FineAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BookId = table.Column<int>(type: "int", nullable: false)
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    BookId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -238,6 +240,11 @@ namespace LibraryManagementSystem.Migrations
                         principalTable: "Books",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_bookApplications_Books_BookId1",
+                        column: x => x.BookId1,
+                        principalTable: "Books",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -255,9 +262,9 @@ namespace LibraryManagementSystem.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "CreatedBy", "CreatedDate", "Email", "EmailConfirmed", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "RegisterDate", "SecurityStamp", "TwoFactorEnabled", "UpdatedBy", "UpdatedDate", "UserName" },
                 values: new object[,]
                 {
-                    { 1L, 0, "", "5300144f-5dfe-42ff-b4d7-5b42e3adba44", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, "", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEMAZ+fSnfIyl59Zy8b32hhQyDAvsfYuczmk6XOPWCjEURMc3fRqo8jU5Zy8qXLkkOQ==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "46ba07c5-aeb2-428d-b50d-4ee64b72469d", false, null, null, "admin@localhost.com" },
-                    { 2L, 0, "", "65da40fc-129c-4898-b378-4b6bcffd50a2", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, "", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEPA8o0OkNtwH1mM28eTkxv4UNo92Al8VTSDmiSCDJskZmg5bcfhubbpEt6CkIfogIw==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "09c6a8ef-0cc5-48c1-ad93-90f8903d8ed4", false, null, null, "employee@localhost.com" },
-                    { 3L, 0, "", "85e55aef-3e2e-4cba-989c-3577597e7496", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "Manager@localhost.com", true, "", false, null, "Manager@LOCALHOST.COM", "Manager@LOCALHOST.COM", "AQAAAAIAAYagAAAAEDcUAcr1t+h/+obLJZPaOxmiBH/oy4fabRCslO3uAstdWlXg2dAemccaoHcF2QBr4g==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3b42a176-2b05-49d0-90f6-26ca864c4af2", false, null, null, "Manager@localhost.com" }
+                    { 1L, 0, "", "2e989fa1-5a85-4dfd-9aa8-323d5374c022", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, "", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEA6eW1ThHV4gpbMRxQfa/zpDOyynOSAOqbgkadOT4iWocG/02ioRcCx+svPD13+nYw==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1bfe0ec7-1358-49cc-b57c-e4c9dedc8948", false, null, null, "admin@localhost.com" },
+                    { 2L, 0, "", "5b42c729-b035-4964-8e6b-2e8ebdd581eb", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, "", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEKAqW1tNsJE0g6+OdUxGVLT0b9XUim/hMrqlkPLwFYXJbzy6aMwsLgQ9KSH4Tk3TIA==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "be311e86-11a0-4d3d-b34d-298eb774e1f6", false, null, null, "employee@localhost.com" },
+                    { 3L, 0, "", "a2f754f2-53fe-4b06-85bd-d0cf052b1c25", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "Manager@localhost.com", true, "", false, null, "Manager@LOCALHOST.COM", "Manager@LOCALHOST.COM", "AQAAAAIAAYagAAAAELl9wM6xWPNlRHI5GOs/qQK7xLl4BSZxZuxRrLyVz6TG+YeqQZ811uiId3w6GQn3Zw==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "492d36ff-5a04-4b74-9ae6-033c9bc4c5de", false, null, null, "Manager@localhost.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -313,6 +320,11 @@ namespace LibraryManagementSystem.Migrations
                 name: "IX_bookApplications_BookId",
                 table: "bookApplications",
                 column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_bookApplications_BookId1",
+                table: "bookApplications",
+                column: "BookId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_CategoryId",

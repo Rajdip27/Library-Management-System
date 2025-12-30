@@ -39,6 +39,7 @@ public class BookCategoryController : Controller
     {
         if (bookCategory.Id == 0)
         {
+          
             await _bookCategoryRepository.AddBookCategoryAsync(bookCategory, cancellationToken);
             return RedirectToAction("Index");
         }
