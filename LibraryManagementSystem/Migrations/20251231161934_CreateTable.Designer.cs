@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251229170847_ints")]
-    partial class ints
+    [Migration("20251231161934_CreateTable")]
+    partial class CreateTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -230,7 +230,7 @@ namespace LibraryManagementSystem.Migrations
                             Id = 1L,
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "2e989fa1-5a85-4dfd-9aa8-323d5374c022",
+                            ConcurrencyStamp = "2312d8ed-8676-466b-8797-bdd34d402295",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "admin@localhost.com",
@@ -239,11 +239,11 @@ namespace LibraryManagementSystem.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEA6eW1ThHV4gpbMRxQfa/zpDOyynOSAOqbgkadOT4iWocG/02ioRcCx+svPD13+nYw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFKAIksEM9bJZYNp0ZlyNZY+wx6fzwABUkqdbyyWx8Ml65vDV5iDqAvONcuThUIvpw==",
                             Phone = "",
                             PhoneNumberConfirmed = false,
                             RegisterDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "1bfe0ec7-1358-49cc-b57c-e4c9dedc8948",
+                            SecurityStamp = "64141d51-29cf-47db-afbe-9bfadefb3f78",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -252,7 +252,7 @@ namespace LibraryManagementSystem.Migrations
                             Id = 2L,
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "5b42c729-b035-4964-8e6b-2e8ebdd581eb",
+                            ConcurrencyStamp = "5a4c270d-940b-4e1d-b61a-dc9e9e786526",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "employee@localhost.com",
@@ -261,11 +261,11 @@ namespace LibraryManagementSystem.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "EMPLOYEE@LOCALHOST.COM",
                             NormalizedUserName = "EMPLOYEE@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKAqW1tNsJE0g6+OdUxGVLT0b9XUim/hMrqlkPLwFYXJbzy6aMwsLgQ9KSH4Tk3TIA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFejfHgwDr7/UC00ABr09DW3c2auD08G0j1MgppyhWSvBElEOp5Y349xnNS/UXXLJQ==",
                             Phone = "",
                             PhoneNumberConfirmed = false,
                             RegisterDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "be311e86-11a0-4d3d-b34d-298eb774e1f6",
+                            SecurityStamp = "bfac727e-b24f-4e8d-bd0c-9925cf7fbad6",
                             TwoFactorEnabled = false,
                             UserName = "employee@localhost.com"
                         },
@@ -274,7 +274,7 @@ namespace LibraryManagementSystem.Migrations
                             Id = 3L,
                             AccessFailedCount = 0,
                             Address = "",
-                            ConcurrencyStamp = "a2f754f2-53fe-4b06-85bd-d0cf052b1c25",
+                            ConcurrencyStamp = "56ceb942-37e0-45da-ba46-4a9cb04bae7f",
                             CreatedBy = 0L,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "Manager@localhost.com",
@@ -283,11 +283,11 @@ namespace LibraryManagementSystem.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "Manager@LOCALHOST.COM",
                             NormalizedUserName = "Manager@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELl9wM6xWPNlRHI5GOs/qQK7xLl4BSZxZuxRrLyVz6TG+YeqQZ811uiId3w6GQn3Zw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMENCiM+AqzOh2I93sldcmFSLt9K3WBYHjnz932nWIcHkxoSK3gP/guEsQTGycjzbg==",
                             Phone = "",
                             PhoneNumberConfirmed = false,
                             RegisterDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "492d36ff-5a04-4b74-9ae6-033c9bc4c5de",
+                            SecurityStamp = "904104dd-08be-4b83-ac92-5f6728193398",
                             TwoFactorEnabled = false,
                             UserName = "Manager@localhost.com"
                         });

@@ -34,7 +34,7 @@ public class BookApplicationRepository : IBookApplicationRepository
   
     public async Task<IEnumerable<BookApplication>> GetAllBookApplicationAsync(CancellationToken cancellationToken)
     {
-       var data = await _context.bookApplications.ToListAsync(cancellationToken);
+       var data = await _context.bookApplications.Include(x=>x.Book).ToListAsync(cancellationToken);
         if (data != null)
         {
             return data;

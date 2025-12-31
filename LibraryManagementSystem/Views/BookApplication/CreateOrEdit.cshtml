@@ -48,15 +48,7 @@
                         <span asp-validation-for="StudentEmail" class="text-danger small"></span>
                     </div>
 
-                    <!-- Student ID -->
-                    <div class="col-md-6">
-                        <label asp-for="StudentId" class="form-label fw-semibold"></label>
-                        <div class="input-group input-group-lg">
-                            <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
-                            <input asp-for="StudentId" class="form-control" placeholder="e.g. STU001234" required />
-                        </div>
-                        <span asp-validation-for="StudentId" class="text-danger small"></span>
-                    </div>
+                    
                     <!-- Student ID -->
                     <div class="col-md-6">
                         <label asp-for="StudentIdCardNo" class="form-label fw-semibold"></label>
@@ -79,7 +71,7 @@
                         </div>
                         <span asp-validation-for="BookId" class="text-danger small"></span>
                     </div>
-                    @if (User.IsInRole("Manger"))
+                    @if (User.IsInRole("Mangement"))
                     {
                         <!-- Status -->
                         <div class="col-md-6">

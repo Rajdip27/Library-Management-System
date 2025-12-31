@@ -61,7 +61,6 @@
                 <tr>
                     <th class="text-muted fw-semibold">#</th>
                     <th class="text-muted fw-semibold">Student Email</th>
-                    <th class="text-muted fw-semibold">Student ID</th>
                     <th class="text-muted fw-semibold">Student Card No</th>
                     <th class="text-muted fw-semibold">Book Title</th>
                     <th class="text-muted fw-semibold">Status</th>
@@ -79,7 +78,7 @@
                         <tr data-status="@item.Status.ToLower()">
                             <td class="fw-medium index">@index</td>
                             <td class="email">@item.StudentEmail</td>
-                            <td class="studentId">@item.StudentId</td>
+                            
                             <td class="StudentIdCardNo">@item.StudentIdCardNo</td>
                             <td class="bookTitle fw-semibold">
                                 @(item.Book?.Title ?? "<em class='text-muted'>Unknown Book</em>")
