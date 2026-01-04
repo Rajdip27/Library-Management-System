@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+    ViewData["ActivePage"] = "Reports";
+}
+
+<h3 class="mb-4 fw-bold text-primary">Reports</h3>
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <h6>Total Books</h6>
+            <h3>@ViewBag.TotalBooks</h3>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <h6>Total Members</h6>
+            <h3>@ViewBag.TotalMembers</h3>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm p-3">
+            <h6>Total Applications</h6>
+            <h3>@ViewBag.TotalApplications</h3>
+        </div>
+    </div>
+</div>

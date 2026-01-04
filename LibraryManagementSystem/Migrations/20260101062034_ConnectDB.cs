@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LibraryManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateTable : Migration
+    public partial class ConnectDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -262,9 +262,9 @@ namespace LibraryManagementSystem.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "CreatedBy", "CreatedDate", "Email", "EmailConfirmed", "FullName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "Phone", "PhoneNumber", "PhoneNumberConfirmed", "RegisterDate", "SecurityStamp", "TwoFactorEnabled", "UpdatedBy", "UpdatedDate", "UserName" },
                 values: new object[,]
                 {
-                    { 1L, 0, "", "2312d8ed-8676-466b-8797-bdd34d402295", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, "", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEFKAIksEM9bJZYNp0ZlyNZY+wx6fzwABUkqdbyyWx8Ml65vDV5iDqAvONcuThUIvpw==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "64141d51-29cf-47db-afbe-9bfadefb3f78", false, null, null, "admin@localhost.com" },
-                    { 2L, 0, "", "5a4c270d-940b-4e1d-b61a-dc9e9e786526", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, "", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAEFejfHgwDr7/UC00ABr09DW3c2auD08G0j1MgppyhWSvBElEOp5Y349xnNS/UXXLJQ==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "bfac727e-b24f-4e8d-bd0c-9925cf7fbad6", false, null, null, "employee@localhost.com" },
-                    { 3L, 0, "", "56ceb942-37e0-45da-ba46-4a9cb04bae7f", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "Manager@localhost.com", true, "", false, null, "Manager@LOCALHOST.COM", "Manager@LOCALHOST.COM", "AQAAAAIAAYagAAAAEMENCiM+AqzOh2I93sldcmFSLt9K3WBYHjnz932nWIcHkxoSK3gP/guEsQTGycjzbg==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "904104dd-08be-4b83-ac92-5f6728193398", false, null, null, "Manager@localhost.com" }
+                    { 1L, 0, "", "f39484db-4175-470b-86c5-5a501debeb83", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "admin@localhost.com", true, "", false, null, "ADMIN@LOCALHOST.COM", "ADMIN@LOCALHOST.COM", "AQAAAAIAAYagAAAAEKOakHrmfDBSpzSzuudQrp6G6Ev4JZKmNKzGEc2zBiXpwoy9cPiPhDQCX+an+W/iAg==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "340069b4-d1e2-4680-bfc4-d82b9bbddbe7", false, null, null, "admin@localhost.com" },
+                    { 2L, 0, "", "a3185490-3384-4713-9e4e-a20939151169", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "employee@localhost.com", true, "", false, null, "EMPLOYEE@LOCALHOST.COM", "EMPLOYEE@LOCALHOST.COM", "AQAAAAIAAYagAAAAENwgUtBWXT/a6WUz2IDSXtIH2e98NeEPHFP7a2cy/LPIRQJaRQXFIcpB5WL5u0eNmQ==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "9611c271-cd69-4a46-91cb-27b26f9c91ea", false, null, null, "employee@localhost.com" },
+                    { 3L, 0, "", "237fc13c-955f-4be8-894e-b64ce6574c3b", 0L, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "Manager@localhost.com", true, "", false, null, "Manager@LOCALHOST.COM", "Manager@LOCALHOST.COM", "AQAAAAIAAYagAAAAEECbG/cVy1Kzo5l/j4V7SnQuWQJXyXkOiYy1vZhjaSFrskx4WcieURemKW7lmwBlzw==", "", null, false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "64e8debd-4346-441f-a57a-7fd676dc5f4c", false, null, null, "Manager@localhost.com" }
                 });
 
             migrationBuilder.InsertData(

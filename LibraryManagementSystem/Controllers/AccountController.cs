@@ -76,8 +76,11 @@ namespace LibraryManagementSystem.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
+
         }
+
+
 
 
         [HttpGet]
@@ -92,6 +95,19 @@ namespace LibraryManagementSystem.Controllers
         public IActionResult AccessDenied(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return RedirectToAction("Login");
+            return View(user);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Settings()
+        {
             return View();
         }
 

@@ -1,3 +1,72 @@
+//using CatMS;
+//using LibraryManagementSystem.Data;
+//using LibraryManagementSystem.Helper;
+//using LibraryManagementSystem.Repository;
+//using LibraryManagementSystem.Service;
+//using Microsoft.AspNetCore.Identity;
+//using Microsoft.EntityFrameworkCore;
+//using static LibraryManagementSystem.Auth_IdentityModel.IdentityModel;
+
+//var builder = WebApplication.CreateBuilder(args);
+
+//// Add services to the container.
+//builder.Services.AddControllersWithViews();
+
+//// Configure Entity Framework and SQL Server
+
+//builder.Services.AddDbContext<ApplicationDbContext>(x =>
+//    x.UseSqlServer(builder.Configuration.GetConnectionString("Coon")));
+
+//// Register the BookRepository for dependency injection
+//builder.Services.AddScoped<IBookRepository, BookRepository>();
+//builder.Services.AddScoped<IBookApplicationRepository, BookApplicationRepository>();
+//builder.Services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
+//builder.Services.AddScoped<IRolePermissionService, RolePermissionService>();
+
+
+//// Add Identity with custom classes and long key
+//builder.Services.AddIdentity<User, Role>(options =>
+//{
+//    options.Password.RequiredLength = 6;
+//    options.Password.RequireNonAlphanumeric = false;
+//    options.Password.RequireDigit = true;
+//    options.Password.RequireLowercase = true;
+//    options.Password.RequireUppercase = false;
+//})
+//.AddEntityFrameworkStores<ApplicationDbContext>()
+//.AddDefaultTokenProviders();
+
+//builder.Services.AddScoped<IAuthService, AuthService>();
+
+
+//builder.Services.AddTransient<ISignInHelper, SignInHelper>();
+
+//var app = builder.Build();
+
+//// Configure the HTTP request pipeline.
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseExceptionHandler("/Home/Error");
+//    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+//    app.UseHsts();
+//}
+
+//app.UseHttpsRedirection();
+//app.UseRouting();
+
+//app.UseAuthorization();
+
+//app.MapStaticAssets();
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Account}/{action=Login}/{id?}")
+//    .WithStaticAssets();
+
+
+//app.Run();
+
+
 using CatMS;
 using LibraryManagementSystem.Data;
 using LibraryManagementSystem.Helper;
@@ -12,19 +81,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Configure Entity Framework and SQL Server
+// ? Configure Entity Framework and SQL Server
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 
-builder.Services.AddDbContext<ApplicationDbContext>(x =>
-    x.UseSqlServer(builder.Configuration.GetConnectionString("Coon")));
-
-// Register the BookRepository for dependency injection
+// Register repositories/services
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookApplicationRepository, BookApplicationRepository>();
 builder.Services.AddScoped<IBookCategoryRepository, BookCategoryRepository>();
 builder.Services.AddScoped<IRolePermissionService, RolePermissionService>();
 
-
-// Add Identity with custom classes and long key
+// ? Add Identity
 builder.Services.AddIdentity<User, Role>(options =>
 {
     options.Password.RequiredLength = 6;
@@ -37,8 +105,6 @@ builder.Services.AddIdentity<User, Role>(options =>
 .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
-
-
 builder.Services.AddTransient<ISignInHelper, SignInHelper>();
 
 var app = builder.Build();
@@ -47,21 +113,19 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(); // ? recommended (needed for css/js/images)
+
 app.UseRouting();
 
+app.UseAuthentication(); // ? REQUIRED for Identity
 app.UseAuthorization();
-
-app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}")
-    .WithStaticAssets();
-
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

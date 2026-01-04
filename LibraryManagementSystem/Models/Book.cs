@@ -11,5 +11,6 @@ public class Book: BaseEntities.BaseEntity<int>
     public int CategoryId { get; set; }
     public BookCategory?  bookCategory { get; set; }
     public ICollection<BookApplication> BookApplications { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
 }

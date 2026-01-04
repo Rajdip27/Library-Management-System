@@ -15,7 +15,10 @@ public class BookRepository : IBookRepository
     public async Task<Book> AddBookAsync(Book book, CancellationToken cancellationToken)
     {
          await _context.Books.AddAsync(book, cancellationToken);
-         await _context.SaveChangesAsync(cancellationToken);
+        if (book.CreatedAt == default)
+            book.CreatedAt = DateTime.UtcNow;
+
+        await _context.SaveChangesAsync(cancellationToken);
          return book;
     }
 

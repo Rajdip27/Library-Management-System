@@ -95,4 +95,29 @@ public class BookApplicationController : Controller
         }
         return View(bookApplication);
     }
+    [HttpGet]
+    public async Task<IActionResult> Recent(string? status, bool includePending = false, CancellationToken cancellationToken = default)
+    {
+        var data = await _bookApplicationRepository.GetAllBookApplicationAsync(cancellationToken);
+
+        // Filter: Approved only OR Approved + Pending
+        if (!string.IsNullOrWhiteSpace(status))
+        {
+            if (includePending && status == "Approved")
+            {
+                data = data.Where(x => x.Status == "Approved" || x.Status == "Pending");
+            }
+            else
+            {
+                data = data.Where(x => x.Status == status);
+            }
+        }
+
+        // Sort newest first (real)
+        data = data.OrderByDescending(x => x.CreatedAt);
+
+        // Reuse the same Index view (no new view needed)
+        return View("Index", data);
+    }
+
 }

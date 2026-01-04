@@ -297,21 +297,39 @@
             <div class="d-flex align-items-center ms-auto flex-wrap gap-2">
                 <div class="search-input-wrapper">
                     <i class="bi bi-search"></i>
-                    <form asp-controller="Books" asp-action="Search" method="get" class="d-inline">
-                        <input type="text" name="term" class="form-control" placeholder="Search books, members..." />
+                    <form asp-controller="Book" asp-action="Index" method="get" class="d-inline">
+                        <input type="text"
+                               name="term"
+                               value="@Context.Request.Query["term"]"
+                               class="form-control"
+                               placeholder="Search books..." />
                     </form>
+
                 </div>
 
                 <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
                         <i class="bi bi-person-circle fs-4"></i>
-                        <span class="d-none d-sm-inline">Admin</span>
+                        @{
+                            var displayName = User?.Identity?.IsAuthenticated == true
+                            ? (User.Identity?.Name ?? "User")
+                            : "Guest";
+                        }
+                        <span>@displayName</span>
+
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow">
                         <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile"><i class="bi bi-person me-2"></i>Profile</a></li>
                         <li><a class="dropdown-item" asp-controller="Account" asp-action="Settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" asp-controller="account" asp-action="login"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        <li>
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="dropdown-item text-danger">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </div>
